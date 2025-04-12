@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import jxl.Cell;
 import jxl.Workbook;
 import jxl.write.Label;
@@ -56,7 +57,7 @@ public class SymbolManager {
 
         String line;
         int row = rowNumber, col = 0, lineNumber = 1;
-        while ((line = reader.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
             if (lineNumber > 1) {
                 String[] symbolAndName = line.split("\\|", 2);
                 String[] t = symbolAndName[1].split(",", 2);
