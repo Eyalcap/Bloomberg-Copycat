@@ -1,3 +1,4 @@
+import java.nio.file.Files;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -18,7 +19,7 @@ public class MailHandler {
 
         while (true) {
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("temp.txt"));
+            BufferedWriter writer = Files.newBufferedWriter("temp.txt".toPath());
 
 
             String host = "imap.gmail.com";
