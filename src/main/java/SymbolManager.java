@@ -1,3 +1,5 @@
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import jxl.Cell;
 import jxl.Workbook;
 import jxl.write.Label;
@@ -49,7 +51,7 @@ public class SymbolManager {
     }
 
     private void getSymbolList(String source) throws IOException, WriteException {
-        url = new URL(source);
+        url = Urls.create(source, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         conn = url.openConnection();
         reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
